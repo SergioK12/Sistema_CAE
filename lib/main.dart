@@ -1,53 +1,75 @@
+import 'package:fiado/views/page_alarms.dart';
+import 'package:fiado/views/page_calculos.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
-  // This widget is the root of your application.
+  static const String _title = 'Pie con botones';
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: PantallaPrincipal(),
+      title: _title,
+      home: MyStatefulWidget(),
     );
   }
 }
 
-class PantallaPrincipal extends StatelessWidget {
-  const PantallaPrincipal({super.key});
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({super.key});
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    PageIMC(),
+    Paginaderecordatorios(),
+    Text(
+      'paag3',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Sergio"),
+      drawer: const Drawer(child: Center(child: Text("Shag comelon"))),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      drawer: Drawer(
-        child: Container(
-          padding: const EdgeInsets.only(top: 40),
-          child: Column(
-            children: const [
-              ListTile(
-                title: Text(
-                  "Opcion primaria",
-                  style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
-                ),
-              )
-            ],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calculate),
+            label: 'Calculos',
           ),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          color: Colors.red,
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.timer),
+            label: 'Horas',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'School',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }
