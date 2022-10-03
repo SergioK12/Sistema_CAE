@@ -1,7 +1,8 @@
 //import 'package:flutter/cupertino.dart';
+import 'package:fiado/views/calculos/imc_calculos_view.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/card.dart';
+import '../../widgets/card.dart';
 
 class PageIMC extends StatelessWidget {
   const PageIMC({super.key});
@@ -16,8 +17,10 @@ class PageIMC extends StatelessWidget {
         child: Wrap(children: [
           InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const vistatest()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => IndiceDemasaCorporal()));
             },
             child: IconCard(
               ico: Icon(Icons.fastfood_rounded, size: tamaico),
