@@ -1,5 +1,5 @@
 //import 'package:flutter/cupertino.dart';
-import 'package:fiado/views/calculos/imc_calculos_view.dart';
+import 'package:cae/views/calculos/imc_calculos_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/card.dart';
