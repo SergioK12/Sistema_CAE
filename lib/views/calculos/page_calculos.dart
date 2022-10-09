@@ -20,7 +20,7 @@ class PageIMC extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => IndiceDemasaCorporal()));
+                      builder: (context) => const IndiceDemasaCorporal()));
             },
             child: IconCard(
               ico: Icon(Icons.fastfood_rounded, size: tamaico),
@@ -30,7 +30,7 @@ class PageIMC extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const vistatest2()));
+                  MaterialPageRoute(builder: (context) => const Vistatest2()));
             },
             child: IconCard(
                 ico: Icon(Icons.heart_broken, size: tamaico),
@@ -67,8 +67,8 @@ class PageIMC extends StatelessWidget {
   }
 }
 
-class vistatest extends StatelessWidget {
-  const vistatest({super.key});
+class Vistatest extends StatelessWidget {
+  const Vistatest({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -88,8 +88,8 @@ class vistatest extends StatelessWidget {
   }
 }
 
-class vistatest2 extends StatelessWidget {
-  const vistatest2({super.key});
+class Vistatest2 extends StatelessWidget {
+  const Vistatest2({super.key});
 
   @override
   Widget build(BuildContext context) {
