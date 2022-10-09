@@ -32,7 +32,7 @@ class _IndiceDemasaCorporalState extends State<IndiceDemasaCorporal> {
         estado = '';
       } else {
         if (resultado <=18.50 && resultado > 0.00) {
-          estado = "Desnuticion";
+          estado = "Desnutrición";
           elc = Colors.yellow;
         } else if (resultado > 18.50 && resultado <= 24.999) {
           estado = "Normal";
@@ -69,7 +69,8 @@ class _IndiceDemasaCorporalState extends State<IndiceDemasaCorporal> {
               children: [
                 const Text("Ingrese el peso(Kg)"),
                 Expanded(
-                    child: TextField(                                              
+                    child: TextField(   
+                                                                 
                   inputFormatters: [ FilteringTextInputFormatter.allow(RegExp(r'[0-9]?[.-]?'))],
                   textAlign: TextAlign.center,
                   onChanged: (value) {

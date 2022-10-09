@@ -1,7 +1,6 @@
-//import 'package:flutter/cupertino.dart';
 import 'package:cae/views/calculos/imc_calculos_view.dart';
+import 'package:cae/views/calculos/pas_pbd_calculos_view.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/card.dart';
 
 class PageIMC extends StatelessWidget {
@@ -29,8 +28,10 @@ class PageIMC extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Vistatest2()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PresionArterial()));
             },
             child: IconCard(
                 ico: Icon(Icons.heart_broken, size: tamaico),
@@ -62,48 +63,6 @@ class PageIMC extends StatelessWidget {
               ico: Icon(Icons.account_balance_outlined, size: tamaico),
               nombre: "Cuenta"),
         ]),
-      ),
-    );
-  }
-}
-
-class Vistatest extends StatelessWidget {
-  const Vistatest({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Indice de masa corporal")),
-      body: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          children: const [
-            Center(
-              child: Text("GORDO Y GEY"),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Vistatest2 extends StatelessWidget {
-  const Vistatest2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text(" presion arterial")),
-      body: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          children: const [
-            Center(
-              child: Text("PRESION INSANA"),
-            )
-          ],
-        ),
       ),
     );
   }
