@@ -24,16 +24,17 @@ class _IndiceDemasaCorporalState extends State<IndiceDemasaCorporal> {
 
   @override
   Widget build(BuildContext context) {
+
     void calcxd(double pes) {
       if (resultado.toString().isEmpty || resultado == 0.00) {
         resultado = 0.00;
         elc = Colors.blue;
         estado = '';
       } else {
-        if (resultado <= 18.40 && resultado > 0.00) {
+        if (resultado <=18.50 && resultado > 0.00) {
           estado = "Desnuticion";
           elc = Colors.yellow;
-        } else if (resultado >= 18.5 && resultado <= 24.999) {
+        } else if (resultado > 18.50 && resultado <= 24.999) {
           estado = "Normal";
           elc = Colors.green;
         } else if (resultado >= 25 && resultado <= 29.999) {
@@ -68,8 +69,8 @@ class _IndiceDemasaCorporalState extends State<IndiceDemasaCorporal> {
               children: [
                 const Text("Ingrese el peso(Kg)"),
                 Expanded(
-                    child: TextField(
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    child: TextField(                                              
+                  inputFormatters: [ FilteringTextInputFormatter.allow(RegExp(r'[0-9]?[.-]?'))],
                   textAlign: TextAlign.center,
                   onChanged: (value) {
                     setState(() {
@@ -84,7 +85,7 @@ class _IndiceDemasaCorporalState extends State<IndiceDemasaCorporal> {
                 const Text("Ingrese la altura(M)"),
                 Expanded(
                     child: TextField(
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                   inputFormatters: [ FilteringTextInputFormatter.allow(RegExp(r'[0-9]?[.-]?'))],
                     textAlign: TextAlign.center,
                     onChanged: (value) {
                     setState(() {
