@@ -17,17 +17,9 @@ class IconCard extends StatelessWidget {
       Colors.grey,
       Colors.deepPurpleAccent,
       Colors.indigo,
-      Colors.transparent,
       Colors.pink,
-      Colours.antiqueWhite,
-      Colours.aliceBlue,
-      Colours.antiqueWhite,
       Colours.aqua,
       Colours.aquamarine,
-      Colours.azure,
-      Colours.beige,
-      Colours.bisque,
-      Colours.blanchedAlmond,
       Colours.blueViolet,
       Colours.burlyWood,
       Colours.burntSienna,
@@ -36,10 +28,9 @@ class IconCard extends StatelessWidget {
       Colours.chocolate,
       Colours.coral,
       Colours.cornFlowerBlue,
-      Colours.cornSilk,
       Colours.crimson,
     ];
-    var intValue = Random().nextInt(27);
+    var intValue = Random().nextInt(18);
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Container(
