@@ -1,5 +1,5 @@
-import 'package:fiado/views/page_alarms.dart';
-import 'package:fiado/views/page_calculos.dart';
+import 'package:fiado/views/alarmas/page_alarms.dart';
+import 'package:fiado/views/calculos/page_calculos.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
