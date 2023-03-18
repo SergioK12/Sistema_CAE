@@ -1,6 +1,6 @@
 name: cae
 description: A new Flutter project.
-publish_to: 'none' 
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -13,10 +13,12 @@ dependencies:
   colours: ^0.0.2
   flutter_alarm_clock: ^0.0.2
   change_app_package_name: ^1.1.0
-  intl: ^0.18.0
   flutter_bloc: ^8.1.2
   responsive_sizer: ^3.1.1
   shared_preferences: ^2.0.18
+  intl: any
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -25,6 +27,5 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
- 
 flutter_intl:
   enabled: true
