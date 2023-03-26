@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-var themedatadark = ThemeData.light().copyWith(
+var themedatadark = ThemeData.dark().copyWith(
   primaryColor: Colors.red
 );

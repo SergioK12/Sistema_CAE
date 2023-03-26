@@ -1,3 +1,6 @@
 {
-    "home": "Inicio"
+    "Home": "Inicio",
+    "Calculations": "Calculos",
+    "Alarms": "Alarmas",
+    "Extras": "Extras"
 }

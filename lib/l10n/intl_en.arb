@@ -1,3 +1,6 @@
 {
-    "home": "Home"
+    "Home": "Home",
+    "Calculations": "Calculations",
+    "Alarms": "Alarms",
+    "Extras": "Extras"
 }
