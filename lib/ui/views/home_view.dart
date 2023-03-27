@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
+import '../widgets/drawer.dart';
 
 class HomeView extends StatelessWidget {
   static String routeName = 'home';
@@ -13,6 +14,7 @@ class HomeView extends StatelessWidget {
     final mainprovider = Provider.of<Mainprovider>(context);
     final indiceactual = mainprovider.selectedMenuOption;
     return Scaffold(
+      drawer: const DrawerApp(),
       appBar: AppBar(
           title: Text(S.current.Home.toString()),
           centerTitle: true,
