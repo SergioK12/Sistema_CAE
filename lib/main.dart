@@ -1,5 +1,6 @@
+import 'package:cae/settings/language_provider.dart';
 import 'package:cae/settings/setting_services.dart';
-import 'package:cae/settings/settings_provider.dart';
+import 'package:cae/settings/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,7 @@ void main() async{
 await Preferencias.init();
 runApp(
   MultiProvider(providers: [
+    ChangeNotifierProvider(create: ((context) => LanguageProvider(isEnglish: Preferencias.getIsEnglish))),
     ChangeNotifierProvider(create: (context)=> ThemeProvider(isDarkMode: Preferencias.getIsDarkMode),
     )
   ],child: const MyApp(),)
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeView.routeName: (_) => const HomeView(),
       },
-      locale: const Locale('en'),
+      locale: Provider.of<LanguageProvider>(context).langActual,
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
