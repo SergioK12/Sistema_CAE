@@ -1,8 +1,9 @@
+import 'package:cae/settings/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../settings/setting_services.dart';
-import '../../settings/settings_provider.dart';
+import '../../settings/theme_provider.dart';
 
 class DrawerApp extends StatefulWidget {
   const DrawerApp({super.key});
@@ -22,18 +23,40 @@ class _DrawerAppState extends State<DrawerApp> {
             const SwitchDarkMode(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const Text("Inglés"),
-                Switch(
-                  value: false,
-                  onChanged: (value) {},
-                ),
-                const Text("Español"),
+              children: const [
+                Text("Inglés"),
+                SwitchLanguage(),
+                Text("Español"),
               ],
             )
           ],
         ),
       ),
+    );
+  }
+}
+
+class SwitchLanguage extends StatefulWidget {
+  const SwitchLanguage({
+    super.key,
+  });
+
+  @override
+  State<SwitchLanguage> createState() => _SwitchLanguageState();
+}
+
+class _SwitchLanguageState extends State<SwitchLanguage> {
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+      value: Preferencias.getIsEnglish,
+      onChanged: (value) {
+        Preferencias.setIsEnglish = value;
+        final langprovider =
+            Provider.of<LanguageProvider>(context, listen: false);
+        value ? langprovider.setSpanish() : langprovider.setEnglish();
+        setState(() {});
+      },
     );
   }
 }
@@ -46,8 +69,6 @@ class SwitchDarkMode extends StatefulWidget {
 }
 
 class _SwitchDarkModeState extends State<SwitchDarkMode> {
-  bool light = true;
-
   @override
   Widget build(BuildContext context) {
     return SwitchListTile.adaptive(
