@@ -1,3 +1,4 @@
+import 'package:cae/generated/l10n.dart';
 import 'package:cae/settings/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -52,8 +53,7 @@ class _SwitchLanguageState extends State<SwitchLanguage> {
       value: Preferencias.getIsEnglish,
       onChanged: (value) {
         Preferencias.setIsEnglish = value;
-        final langprovider =
-            Provider.of<LanguageProvider>(context, listen: false);
+        final langprovider = Provider.of<LanguageProvider>(context, listen: false);
         value ? langprovider.setSpanish() : langprovider.setEnglish();
         setState(() {});
       },
@@ -71,13 +71,12 @@ class SwitchDarkMode extends StatefulWidget {
 class _SwitchDarkModeState extends State<SwitchDarkMode> {
   @override
   Widget build(BuildContext context) {
-    return SwitchListTile.adaptive(
+    return SwitchListTile(
         value: Preferencias.getIsDarkMode,
-        title: const Text("Modo odcuro"),
+        title: Text(S.current.DarkMode.toString()),
         onChanged: (value) {
           Preferencias.setIsdarkmode = value;
-          final themeprovider =
-              Provider.of<ThemeProvider>(context, listen: false);
+          final themeprovider = Provider.of<ThemeProvider>(context, listen: false);
           value ? themeprovider.setDarkMode() : themeprovider.setlightMode();
           setState(() {});
         });

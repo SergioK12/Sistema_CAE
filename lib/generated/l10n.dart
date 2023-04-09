@@ -89,6 +89,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Dark mode`
+  String get DarkMode {
+    return Intl.message(
+      'Dark mode',
+      name: 'DarkMode',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
