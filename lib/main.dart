@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'generated/l10n.dart';
-import 'ui/logic/main_provider.dart';
+import 'logic/main_provider.dart';
 import 'ui/views/home_view.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
