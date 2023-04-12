@@ -1,10 +1,10 @@
 import 'package:cae/generated/l10n.dart';
-import 'package:cae/settings/language_provider.dart';
+import 'package:cae/modules/settings/language_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../settings/setting_services.dart';
-import '../../settings/theme_provider.dart';
+import '../../modules/settings/setting_services.dart';
+import '../../modules/settings/theme_provider.dart';
 
 class DrawerApp extends StatefulWidget {
   const DrawerApp({super.key});

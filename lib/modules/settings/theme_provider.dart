@@ -1,19 +1,21 @@
   import 'package:flutter/material.dart';
 
+import '../../ui/styles/themes.dart';
+
 class ThemeProvider extends ChangeNotifier {
   ThemeData temaactual;
 
   ThemeProvider({
     required bool isDarkMode,
-  }) : temaactual = isDarkMode ? ThemeData.dark() : ThemeData.light();
+  }) : temaactual = isDarkMode ? themedatadark : themedatalight;
 
   setlightMode() {
-    temaactual = ThemeData.light();
+    temaactual = themedatalight;
     notifyListeners();
   }
 
   setDarkMode() {
-    temaactual = ThemeData.dark();
+    temaactual = themedatadark;
     notifyListeners();
   }
 }
