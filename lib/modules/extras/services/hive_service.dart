@@ -9,8 +9,10 @@ class HiveDB {
     return box.add(task);
   }
 
-  Future<List<Task>> get getListTAsk async {
+  Future<List<Task>>  getListTAsk ()async {
+    List<Task> lista = [];
     final Box<Task> box = await Hive.openBox<Task>('Tareas');
-    return box.values.toList();
+    lista = box.values.toList();
+    return lista;
   }
 }
