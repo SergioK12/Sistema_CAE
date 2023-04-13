@@ -1,3 +1,4 @@
+import 'package:cae/generated/l10n.dart';
 import 'package:cae/modules/extras/services/hive_service.dart';
 import 'package:cae/modules/settings/theme_provider.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ class TodoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mystyle =  Provider.of<ThemeProvider>(context).temaactual;
+
     final hive = HiveDB();
 
     return Scaffold(
@@ -17,17 +20,45 @@ class TodoView extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                color: Provider.of<ThemeProvider>(context).temaactual.primaryColor,
+                color:
+                    Provider.of<ThemeProvider>(context).temaactual.primaryColorDark,
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.11,
+                height: MediaQuery.of(context).size.height * 0.10,
                 child:
-                    TextButton(onPressed: () {},
-                     child: const Text("Agregar")),
+                    TextButton(onPressed: () {
+                      showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title:  Text("Agregar tarea", style: mystyle.textTheme.titleSmall,),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          TextField(
+                            maxLength: 5,
+                          )
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                            },
+                            child: const Text("Aceptar")),
+                        TextButton(
+                            onPressed: () {
+                               Navigator.pop(context);
+                            }, child: const Text("Cancelar", style: TextStyle(color: Colors.red),),),
+                      ],
+                    );
+                  },
+                );
+                      
+                    }, child:  Text(S.current.Add.toString(), style: mystyle.textTheme.titleSmall,)),
               ),
               Container(
                 color: Colors.red,
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.89,
+                height: MediaQuery.of(context).size.height * 0.90,
                 child: FutureBuilder(
                   future: hive.getListTAsk(),
                   builder: (context, snapshot) {
@@ -54,24 +85,8 @@ class TodoView extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            FloatingActionButton(
-              onPressed: () {
-                Task untask =
-                    Task(description: "Prueba", completed: true, date: "123");
-                HiveDB().guardarTask(untask);
-              },
-              child: const Icon(Icons.add),
-            ),
-            FloatingActionButton(
-              onPressed: ()  {
-                
-              },
-              child: const Icon(Icons.precision_manufacturing_outlined),
-            ),
-          ],
-        ));
+       
+          
+        );
   }
 }

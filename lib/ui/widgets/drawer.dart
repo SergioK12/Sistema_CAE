@@ -16,6 +16,7 @@ class DrawerApp extends StatefulWidget {
 class _DrawerAppState extends State<DrawerApp> {
   @override
   Widget build(BuildContext context) {
+    final mystyle =  Provider.of<ThemeProvider>(context).temaactual;
     return Drawer(
       child: Center(
         child: Column(
@@ -24,10 +25,10 @@ class _DrawerAppState extends State<DrawerApp> {
             const SwitchDarkMode(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Text("Inglés"),
-                SwitchLanguage(),
-                Text("Español"),
+              children:  [
+                Text(S.current.English.toString(),style: mystyle.textTheme.titleSmall),
+                const SwitchLanguage(),
+                Text(S.current.Spanish.toString(),style: mystyle.textTheme.titleSmall),
               ],
             )
           ],
@@ -71,9 +72,11 @@ class SwitchDarkMode extends StatefulWidget {
 class _SwitchDarkModeState extends State<SwitchDarkMode> {
   @override
   Widget build(BuildContext context) {
+    final mystyle =  Provider.of<ThemeProvider>(context).temaactual;
+
     return SwitchListTile(
         value: Preferencias.getIsDarkMode,
-        title: Text(S.current.DarkMode.toString()),
+        title: Text(S.current.DarkMode.toString(), style: mystyle.textTheme.titleSmall),
         onChanged: (value) {
           Preferencias.setIsdarkmode = value;
           final themeprovider = Provider.of<ThemeProvider>(context, listen: false);
