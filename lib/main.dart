@@ -1,5 +1,6 @@
 
 import 'package:cae/modules/extras/models/task_model.dart';
+import 'package:cae/modules/extras/providers/task_provider.dart';
 import 'package:cae/modules/settings/language_provider.dart';
 import 'package:cae/modules/settings/setting_services.dart';
 import 'package:cae/modules/settings/theme_provider.dart';
@@ -22,12 +23,14 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-          create: ((context) =>
-              LanguageProvider(isEnglish: Preferencias.getIsEnglish))),
+        create: ((context) => LanguageProvider(isEnglish: Preferencias.getIsEnglish))),
       ChangeNotifierProvider(
-        create: (context) =>
-            ThemeProvider(isDarkMode: Preferencias.getIsDarkMode),
-      )
+        create: (context) =>ThemeProvider(isDarkMode: Preferencias.getIsDarkMode),
+      ),
+      
+      ChangeNotifierProvider(
+        create: (context) =>TaskFormProvider()),
+      
     ],
     child: const MyApp(),
   ));
