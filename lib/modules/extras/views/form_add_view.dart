@@ -1,39 +1,33 @@
+
+
+import 'package:cae/modules/extras/providers/add_task_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 class FormAddTask extends StatelessWidget {
-  const FormAddTask({super.key});
-
+   const FormAddTask({super.key, required this.keyform});
+   final Key keyform;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.1),
-      height: MediaQuery.of(context).size.height * 0.4,
-      margin: const EdgeInsets.all(9),
-      //color: Colors.grey,
+    final formu = Provider.of<TaskFormProvider>(context);
+    return Form(
+      key: keyform,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          const TextField(
-            style: TextStyle(color: Colors.black),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue))),
-          ),
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.all(5),
-              padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                color: Colors.black,
-              ),
-              child: const Text("Guardar"),
-            ),
-            onTap: () {
-              Navigator.pop(context);
+          TextFormField(
+            validator: (value) {
+              if (value.toString().isEmpty) {
+                return "No puedes dejarlo vacio";
+              }
+              return null;
             },
+            onChanged: (value) => formu.,
           )
         ],
       ),
     );
   }
 }
+

@@ -23,12 +23,14 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-          create: ((context) =>
-              LanguageProvider(isEnglish: Preferencias.getIsEnglish))),
+        create: ((context) => LanguageProvider(isEnglish: Preferencias.getIsEnglish))),
       ChangeNotifierProvider(
-        create: (context) =>
-            ThemeProvider(isDarkMode: Preferencias.getIsDarkMode),
-      )
+        create: (context) =>ThemeProvider(isDarkMode: Preferencias.getIsDarkMode),
+      ),
+      
+      ChangeNotifierProvider(
+        create: (context) =>TaskFormProvider()),
+      
     ],
     child: const MyApp(),
   ));
@@ -41,7 +43,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => Mainprovider()),
-          ChangeNotifierProvider(create: (_) => AddTaskFormProvider())
         ],
         child: MaterialApp(
           title: 'Sistema CAE',

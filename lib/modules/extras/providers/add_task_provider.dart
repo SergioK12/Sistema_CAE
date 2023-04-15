@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-class AddTaskFormProvider extends ChangeNotifier {
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+class TaskFormProvider extends ChangeNotifier {
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  String? descripcion = '';
 
-  String descripcion = "";
-  bool iscompleted = false;
-  String date = "";
+  bool isValidForm() {
+    return formkey.currentState!.validate() ? true : false;
+  }
 
-  
+  String get getdescripcion => descripcion!;
+
+  String set setdescription (String desk)
 }

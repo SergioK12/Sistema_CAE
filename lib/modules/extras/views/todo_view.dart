@@ -1,7 +1,7 @@
 import 'package:cae/generated/l10n.dart';
+import 'package:cae/modules/extras/providers/add_task_provider.dart';
 import 'package:cae/modules/extras/services/hive_service.dart';
 import 'package:cae/modules/extras/views/form_add_view.dart';
-import 'package:cae/modules/extras/views/test.dart';
 import 'package:cae/modules/settings/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +14,7 @@ class TodoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mystyle = Provider.of<ThemeProvider>(context).temaactual;
+    final formprovider = Provider.of<TaskFormProvider>(context);
 
     final hive = HiveDB();
 
@@ -29,22 +30,42 @@ class TodoView extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.10,
               child: TextButton(
                   onPressed: () {
-                   showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (BuildContext context) {
-                return SingleChildScrollView(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom / 3,
-                    ),
-                    child: const FormAddTask()
-                    ),
-                  
-                );
-              },
-            );
-                    
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text(
+                            "Agregar tarea",
+                            style: mystyle.textTheme.titleSmall,
+                          ),
+                          content: FormAddTask(keyform: formprovider.formkey),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  final latarea = Task(
+                                      description: "DESK",
+                                      completed: false,
+                                      date: "");
+                                  if (formprovider.isValidForm() == true) {
+                                    debugPrint("Ta bien");
+                                    Navigator.pop(context);
+                                    hive.guardarTask(latarea);
+                                  }
+                                },
+                                child: const Text("Aceptar")),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text(
+                                "Cancelar",
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                   child: Text(
                     S.current.Add.toString(),
