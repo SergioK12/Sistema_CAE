@@ -1,6 +1,6 @@
 
 
-import 'package:cae/modules/extras/providers/add_task_provider.dart';
+import 'package:cae/modules/extras/providers/task_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +10,7 @@ class FormAddTask extends StatelessWidget {
    final Key keyform;
   @override
   Widget build(BuildContext context) {
-    final formu = Provider.of<TaskFormProvider>(context);
+    final taskprovider = Provider.of<TaskFormProvider>(context);
     return Form(
       key: keyform,
       child: Column(
@@ -23,7 +23,7 @@ class FormAddTask extends StatelessWidget {
               }
               return null;
             },
-            onChanged: (value) => formu.,
+            onChanged: (value) => taskprovider.setdescription(value),
           )
         ],
       ),

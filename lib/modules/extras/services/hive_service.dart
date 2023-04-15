@@ -8,7 +8,7 @@ class HiveDB {
     return box.add(task);
   }
 
-  Future<List<Task>>  getListTAsk ()async {
+  Future<List<Task>> getListTAsk() async {
     List<Task> lista = [];
     final Box<Task> box = await Hive.openBox<Task>('Tareas');
     lista = box.values.toList();
@@ -16,8 +16,9 @@ class HiveDB {
   }
 
   Future<bool> createCookiesBox(var task) async {
-    final Box<Task> box = await Hive.openBox<Task>('Tareas');    
-    await box.add(task as Task); //Se pasa un iterable que contiene n variables a almacenar
+    final Box<Task> box = await Hive.openBox<Task>('Tareas');
+    await box.add(task
+        as Task); //Se pasa un iterable que contiene n variables a almacenar
     return true;
   }
 }

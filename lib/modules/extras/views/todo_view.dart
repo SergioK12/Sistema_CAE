@@ -1,5 +1,5 @@
 import 'package:cae/generated/l10n.dart';
-import 'package:cae/modules/extras/providers/add_task_provider.dart';
+import 'package:cae/modules/extras/providers/task_provider.dart';
 import 'package:cae/modules/extras/services/hive_service.dart';
 import 'package:cae/modules/extras/views/form_add_view.dart';
 import 'package:cae/modules/settings/theme_provider.dart';
@@ -43,9 +43,9 @@ class TodoView extends StatelessWidget {
                             TextButton(
                                 onPressed: () {
                                   final latarea = Task(
-                                      description: "DESK",
+                                      description: formprovider.getdescripcion,
                                       completed: false,
-                                      date: "");
+                                      date: "XD");
                                   if (formprovider.isValidForm() == true) {
                                     debugPrint("Ta bien");
                                     Navigator.pop(context);
@@ -79,6 +79,7 @@ class TodoView extends StatelessWidget {
               child: FutureBuilder(
                 future: hive.getListTAsk(),
                 builder: (context, snapshot) {
+                  
                   if (snapshot.hasData) {
                     List<Task> lis = snapshot.data as List<Task>;
                     return ListView.builder(
