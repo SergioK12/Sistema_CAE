@@ -8,9 +8,14 @@ import 'package:provider/provider.dart';
 
 import '../models/task_model.dart';
 
-class TodoView extends StatelessWidget {
+class TodoView extends StatefulWidget {
   const TodoView({super.key});
 
+  @override
+  State<TodoView> createState() => _TodoViewState();
+}
+
+class _TodoViewState extends State<TodoView> {
   @override
   Widget build(BuildContext context) {
     final mystyle = Provider.of<ThemeProvider>(context).temaactual;
@@ -50,6 +55,8 @@ class TodoView extends StatelessWidget {
                                     debugPrint("Ta bien");
                                     Navigator.pop(context);
                                     hive.guardarTask(latarea);
+                                    setState(() {
+                                    });
                                   }
                                 },
                                 child: const Text("Aceptar")),
@@ -79,7 +86,6 @@ class TodoView extends StatelessWidget {
               child: FutureBuilder(
                 future: hive.getListTAsk(),
                 builder: (context, snapshot) {
-                  
                   if (snapshot.hasData) {
                     List<Task> lis = snapshot.data as List<Task>;
                     return ListView.builder(
