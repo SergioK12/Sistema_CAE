@@ -2,6 +2,7 @@ import 'package:cae/modules/extras/models/task_model.dart';
 import 'package:hive/hive.dart';
 
 class HiveDB {
+   List<Task> lalista = [];
 
   Future<int> guardarTask(Task task) async {
     final Box<Task> box = await Hive.openBox<Task>('Tareas');
@@ -12,6 +13,8 @@ class HiveDB {
     List<Task> lista = [];
     final Box<Task> box = await Hive.openBox<Task>('Tareas');
     lista = box.values.toList();
+    lalista = lista;
+    
     return lista;
   }
 
