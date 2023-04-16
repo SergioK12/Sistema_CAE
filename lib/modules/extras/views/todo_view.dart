@@ -1,6 +1,5 @@
 import 'package:cae/generated/l10n.dart';
 import 'package:cae/modules/extras/providers/task_provider.dart';
-import 'package:cae/modules/extras/services/hive_service.dart';
 import 'package:cae/modules/extras/views/form_add_view.dart';
 import 'package:cae/modules/settings/theme_provider.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +19,6 @@ class _TodoViewState extends State<TodoView> {
   Widget build(BuildContext context) {
     final mystyle = Provider.of<ThemeProvider>(context).temaactual;
     final formprovider = Provider.of<TaskFormProvider>(context);
-
-    final hive = HiveDB();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -54,9 +51,8 @@ class _TodoViewState extends State<TodoView> {
                                   if (formprovider.isValidForm() == true) {
                                     debugPrint("Ta bien");
                                     Navigator.pop(context);
-                                    hive.guardarTask(latarea);
-                                    setState(() {
-                                    });
+                                    formprovider.guardarTask(latarea);
+                                    setState(() {});
                                   }
                                 },
                                 child: const Text("Aceptar")),
@@ -79,23 +75,40 @@ class _TodoViewState extends State<TodoView> {
                     style: mystyle.textTheme.titleSmall,
                   )),
             ),
-            Container(
-              color: Colors.red,
+            SizedBox(
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.90,
               child: FutureBuilder(
-                future: hive.getListTAsk(),
+                future: formprovider.getListTAsk(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List<Task> lis = snapshot.data as List<Task>;
                     return ListView.builder(
                       itemCount: lis.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return ListTile(
-                          title: Text(lis[index].description.toString()),
-                          trailing: Checkbox(
-                            value: lis[index].completed,
-                            onChanged: (value) => !value!,
+                        return Dismissible(
+                          key: Key(index.toString()),
+                          background: Container(
+                            color: Colors.red,
+                            child: Row(
+                              
+                              children: const [
+                                
+                                Padding(
+                                  padding: EdgeInsets.only(left: 9),
+                                  child: Text("Eliminar"))
+                              ],),
+                            
+                          ),
+                          onDismissed: (direction) {
+                            formprovider.borrarTask(index);
+                          },
+                          child: ListTile(
+                            title: Text(lis[index].description.toString(), style: mystyle.textTheme.titleSmall),
+                            trailing: Checkbox(
+                              value: lis[index].completed,
+                              onChanged: (value) => !value!,
+                            ),
                           ),
                         );
                       },
