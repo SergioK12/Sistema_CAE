@@ -5,15 +5,18 @@ part 'task_model.g.dart';
 @HiveType(typeId: 1)
 class Task {
   Task(
-      {required this.description, required this.completed, required this.date});
+      {required this.description, required this.completed, required this.date, required this.id});
 
-  @HiveField(0)
-  String description;
+   @HiveField(0)
+  String id;
 
   @HiveField(1)
-  bool completed;
+  String description;
 
   @HiveField(2)
+  bool completed;
+
+  @HiveField(3)
   String date;
 
   @override

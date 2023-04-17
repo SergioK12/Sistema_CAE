@@ -4,12 +4,12 @@ import 'package:cae/modules/extras/providers/task_provider.dart';
 import 'package:cae/modules/settings/language_provider.dart';
 import 'package:cae/modules/settings/setting_services.dart';
 import 'package:cae/modules/settings/theme_provider.dart';
+import 'package:cae/providers/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'generated/l10n.dart';
-import 'logic/main_provider.dart';
 import 'ui/views/home_view.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';

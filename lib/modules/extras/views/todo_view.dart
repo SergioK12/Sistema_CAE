@@ -45,6 +45,9 @@ class _TodoViewState extends State<TodoView> {
                             TextButton(
                                 onPressed: () {
                                   final latarea = Task(
+                                      id: DateTime.now()
+                                          .microsecondsSinceEpoch
+                                          .toString(),
                                       description: formprovider.getdescripcion,
                                       completed: false,
                                       date: "XD");
@@ -83,38 +86,106 @@ class _TodoViewState extends State<TodoView> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List<Task> lis = snapshot.data as List<Task>;
-                    return ListView.builder(
-                      itemCount: lis.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Dismissible(
-                          key: Key(index.toString()),
-                          background: Container(
-                            color: Colors.red,
-                            child: Row(
-                              
-                              children: const [
-                                
-                                Padding(
-                                  padding: EdgeInsets.only(left: 9),
-                                  child: Text("Eliminar"))
-                              ],),
-                            
-                          ),
-                          onDismissed: (direction) {
-                            formprovider.borrarTask(index);
-                          },
-                          child: ListTile(
-                            title: Text(lis[index].description.toString(), style: mystyle.textTheme.titleSmall),
-                            trailing: Checkbox(
-                              value: lis[index].completed,
-                              onChanged: (value) => !value!,
+                    if (lis.isEmpty) {
+                      return const Center(
+                          child: Text(
+                        "Vacio",
+                        style: TextStyle(color: Colors.black),
+                      ));
+                    } else {
+                      return ListView.builder(
+                        itemCount: lis.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Dismissible(
+                            key: Key(lis[index].id),
+                            background: Container(
+                              color: Colors.red,
+                              child: Row(
+                                children: const [
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 9),
+                                      child: Text("Eliminar"))
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    );
+                            secondaryBackground: Container(
+                                color: Colors.blue,
+                                child: const Padding(
+                                    padding: EdgeInsets.only(left: 9),
+                                    child: Text("Terminar"))),
+                            confirmDismiss: (direction) async {
+                              var res = false;
+                              if (direction == DismissDirection.startToEnd) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      content: const Text(
+                                        "¿Quieres borrar esta tarea?",
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      actions: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: IconButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.cancel,
+                                                    color: Colors.red,
+                                                  )),
+                                            ),
+                                            Expanded(
+                                              child: IconButton(
+                                                  onPressed: () {
+                                                    formprovider.borrarTask(
+                                                        lis[index].id);
+                                                    res = false;
+                                                    Navigator.pop(context);
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.check,
+                                                    color: Colors.blue,
+                                                  )),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                                setState(() {});
+                                return res;
+                              }
+
+                              if (direction == DismissDirection.endToStart) {
+                                lis[index].completed = !lis[index].completed;
+                                setState(() {
+                                  
+                                });
+                              }
+                              return res;
+                            },
+                            child: ListTile(
+                              title: Text(lis[index].description.toString(),
+                                  style: mystyle.textTheme.titleSmall),
+                              trailing: Checkbox(
+                                value: lis[index].completed,
+                                onChanged: (value) => !value!,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }
                   } else {
-                    return const Center(child: Text("Vacio"));
+                    return const Center(
+                        child: Text(
+                      "Vacio",
+                      style: TextStyle(color: Colors.black),
+                    ));
                   }
                 },
               ),
