@@ -18,9 +18,9 @@ class TaskFormProvider extends ChangeNotifier {
     descripcion = desk;
   }
 
-  Future<int> guardarTask(Task task) async {
+  void guardarTask(Task task) async {
     final Box<Task> box = await Hive.openBox<Task>('Tareas');
-    return box.add(task);
+    await box.put(task.id, task);
   }
 
   Future<List<Task>> getListTAsk() async {
@@ -30,14 +30,9 @@ class TaskFormProvider extends ChangeNotifier {
     return lista;
   }
 
-  Future<bool> createCookiesBox(var task) async {
+  Future<void> borrarTask(String id) async {
     final Box<Task> box = await Hive.openBox<Task>('Tareas');
-    await box.add(task as Task);
-    return true;
-  }
-
-  Future<void> borrarTask(int index) async {
-    final Box<Task> box = await Hive.openBox<Task>('Tareas');
-    return box.deleteAt(index);
+    notifyListeners();
+    return box.delete(id);
   }
 }

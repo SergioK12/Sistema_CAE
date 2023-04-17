@@ -1,10 +1,10 @@
 import 'package:cae/modules/calcules/views/calcules_view.dart';
 import 'package:cae/modules/extras/views/todo_view.dart';
+import 'package:cae/providers/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../generated/l10n.dart';
-import '../../logic/main_provider.dart';
 import '../../modules/alarms/views/alarm_view.dart';
 import '../widgets/drawer.dart';
 
