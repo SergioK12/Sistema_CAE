@@ -8,7 +8,7 @@ var themedatalight = ThemeData.light(
   primaryColorDark: Colors.lightGreen[600],
 
   textTheme: const TextTheme(
-    titleSmall: TextStyle(
+     bodyMedium: TextStyle(
       color: Colors.black
     ),
     

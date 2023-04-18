@@ -22,10 +22,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Accept": MessageLookupByLibrary.simpleMessage("Aceptar"),
         "Add": MessageLookupByLibrary.simpleMessage("Agregar"),
+        "Add_task": MessageLookupByLibrary.simpleMessage("Agregar tarea"),
         "Alarms": MessageLookupByLibrary.simpleMessage("Alarmas"),
         "Calculations": MessageLookupByLibrary.simpleMessage("Calculos"),
+        "Cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "Completed": MessageLookupByLibrary.simpleMessage("Completar"),
         "DarkMode": MessageLookupByLibrary.simpleMessage("Modo oscuro"),
+        "Delete": MessageLookupByLibrary.simpleMessage("Borrar"),
+        "Delete_task":
+            MessageLookupByLibrary.simpleMessage("¿Quieres borrar esta tarea?"),
+        "Empty_List": MessageLookupByLibrary.simpleMessage("Lista vacía."),
         "English": MessageLookupByLibrary.simpleMessage("Inglés"),
         "Extras": MessageLookupByLibrary.simpleMessage("Extras"),
         "Home": MessageLookupByLibrary.simpleMessage("Inicio"),
