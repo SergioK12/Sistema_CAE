@@ -16,7 +16,7 @@ class DrawerApp extends StatefulWidget {
 class _DrawerAppState extends State<DrawerApp> {
   @override
   Widget build(BuildContext context) {
-    final mystyle =  Provider.of<ThemeProvider>(context).temaactual;
+    final mystyle = Provider.of<ThemeProvider>(context).temaactual;
     return Drawer(
       child: Center(
         child: Column(
@@ -25,10 +25,12 @@ class _DrawerAppState extends State<DrawerApp> {
             const SwitchDarkMode(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children:  [
-                Text(S.current.English.toString(),style: mystyle.textTheme.titleSmall),
+              children: [
+                Text(S.current.English.toString(),
+                    style: mystyle.textTheme.titleSmall),
                 const SwitchLanguage(),
-                Text(S.current.Spanish.toString(),style: mystyle.textTheme.titleSmall),
+                Text(S.current.Spanish.toString(),
+                    style: mystyle.textTheme.titleSmall),
               ],
             )
           ],
@@ -54,9 +56,11 @@ class _SwitchLanguageState extends State<SwitchLanguage> {
       value: Preferencias.getIsEnglish,
       onChanged: (value) {
         Preferencias.setIsEnglish = value;
-        final langprovider = Provider.of<LanguageProvider>(context, listen: false);
-        value ? langprovider.setSpanish() : langprovider.setEnglish();
-        setState(() {});
+        final langprovider =
+            Provider.of<LanguageProvider>(context, listen: false);
+        setState(() {
+          value ? langprovider.setSpanish() : langprovider.setEnglish();
+        });
       },
     );
   }
@@ -72,16 +76,20 @@ class SwitchDarkMode extends StatefulWidget {
 class _SwitchDarkModeState extends State<SwitchDarkMode> {
   @override
   Widget build(BuildContext context) {
-    final mystyle =  Provider.of<ThemeProvider>(context).temaactual;
+    final mystyle = Provider.of<ThemeProvider>(context).temaactual;
+  
 
     return SwitchListTile(
         value: Preferencias.getIsDarkMode,
-        title: Text(S.current.DarkMode.toString(), style: mystyle.textTheme.titleSmall),
+        title: Text(S.current.DarkMode.toString(), style: mystyle.textTheme.bodyMedium),
         onChanged: (value) {
           Preferencias.setIsdarkmode = value;
-          final themeprovider = Provider.of<ThemeProvider>(context, listen: false);
+          final themeprovider =
+              Provider.of<ThemeProvider>(context, listen: false);
           value ? themeprovider.setDarkMode() : themeprovider.setlightMode();
-          setState(() {});
+          setState(() {
+          
+          });
         });
   }
 }

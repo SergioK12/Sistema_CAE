@@ -37,8 +37,8 @@ class _TodoViewState extends State<TodoView> {
                       builder: (context) {
                         return AlertDialog(
                           title: Text(
-                            "Agregar tarea",
-                            style: mystyle.textTheme.titleSmall,
+                            S.current.Add_task,
+                            style: mystyle.textTheme.bodyMedium,
                           ),
                           content: FormAddTask(keyform: formprovider.formkey),
                           actions: [
@@ -50,22 +50,21 @@ class _TodoViewState extends State<TodoView> {
                                           .toString(),
                                       description: formprovider.getdescripcion,
                                       completed: false,
-                                      date: "XD");
-                                  if (formprovider.isValidForm() == true) {
-                                    debugPrint("Ta bien");
+                                      date: DateTime.now().toString());
+                                  if (formprovider.isValidForm() == true) { 
                                     Navigator.pop(context);
                                     formprovider.guardarTask(latarea);
                                     setState(() {});
                                   }
                                 },
-                                child: const Text("Aceptar")),
+                                child: Text(S.current.Accept)),
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: const Text(
-                                "Cancelar",
-                                style: TextStyle(color: Colors.red),
+                              child:  Text(
+                                S.current.Cancel,
+                                style: const TextStyle(color: Colors.red),
                               ),
                             ),
                           ],
@@ -75,7 +74,7 @@ class _TodoViewState extends State<TodoView> {
                   },
                   child: Text(
                     S.current.Add.toString(),
-                    style: mystyle.textTheme.titleSmall,
+                    style: mystyle.textTheme.bodyMedium,
                   )),
             ),
             SizedBox(
@@ -87,10 +86,10 @@ class _TodoViewState extends State<TodoView> {
                   if (snapshot.hasData) {
                     List<Task> lis = snapshot.data as List<Task>;
                     if (lis.isEmpty) {
-                      return const Center(
+                      return  Center(
                           child: Text(
-                        "Vacio",
-                        style: TextStyle(color: Colors.black),
+                        S.current.Empty_List,
+                        style: const TextStyle(color: Colors.black),
                       ));
                     } else {
                       return ListView.builder(
@@ -101,18 +100,19 @@ class _TodoViewState extends State<TodoView> {
                             background: Container(
                               color: Colors.red,
                               child: Row(
-                                children: const [
+                                children:  [
                                   Padding(
-                                      padding: EdgeInsets.only(left: 9),
-                                      child: Text("Eliminar"))
+                                      padding: const EdgeInsets.only(left: 9),
+                                      child: Text(S.current.Delete))
                                 ],
                               ),
                             ),
                             secondaryBackground: Container(
+                              alignment: Alignment.centerRight,
                                 color: Colors.blue,
-                                child: const Padding(
-                                    padding: EdgeInsets.only(left: 9),
-                                    child: Text("Terminar"))),
+                                child:  Padding(
+                                    padding: const EdgeInsets.only(right: 9),
+                                    child: Text(S.current.Completed))),
                             confirmDismiss: (direction) async {
                               var res = false;
                               if (direction == DismissDirection.startToEnd) {
@@ -120,9 +120,9 @@ class _TodoViewState extends State<TodoView> {
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
-                                      content: const Text(
-                                        "¿Quieres borrar esta tarea?",
-                                        style: TextStyle(color: Colors.black),
+                                      content:  Text(
+                                        S.current.Delete_task,
+                                        style: mystyle.textTheme.bodyMedium,
                                       ),
                                       actions: [
                                         Row(
@@ -161,19 +161,30 @@ class _TodoViewState extends State<TodoView> {
                               }
 
                               if (direction == DismissDirection.endToStart) {
-                                lis[index].completed = !lis[index].completed;
-                                setState(() {
-                                  
-                                });
+                                formprovider.alternarBoleano( lis[index].id , lis[index].completed);
+                                setState(() {});
                               }
                               return res;
                             },
                             child: ListTile(
-                              title: Text(lis[index].description.toString(),
-                                  style: mystyle.textTheme.titleSmall),
+                              title: 
+                              (lis[index].completed == false)?
+                              Text(lis[index].description.toString(),
+                                  style: mystyle.textTheme.bodyMedium)
+                                  : 
+                                  Text(lis[index].description.toString(),
+                                  style: mystyle.textTheme.bodyMedium!.copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationColor: const Color(0xff000000)
+                                  )),
                               trailing: Checkbox(
+                                
                                 value: lis[index].completed,
-                                onChanged: (value) => !value!,
+                                onChanged: (value) {
+                                formprovider.alternarBoleano( lis[index].id , lis[index].completed);
+                                setState(() {
+                                });
+                                },
                               ),
                             ),
                           );
@@ -181,10 +192,10 @@ class _TodoViewState extends State<TodoView> {
                       );
                     }
                   } else {
-                    return const Center(
+                    return  Center(
                         child: Text(
-                      "Vacio",
-                      style: TextStyle(color: Colors.black),
+                      S.current.Empty_List,
+                      style: const TextStyle(color: Colors.black),
                     ));
                   }
                 },

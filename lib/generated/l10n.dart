@@ -129,6 +129,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Add task`
+  String get Add_task {
+    return Intl.message(
+      'Add task',
+      name: 'Add_task',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accept`
+  String get Accept {
+    return Intl.message(
+      'Accept',
+      name: 'Accept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get Cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'Cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Empty list.`
+  String get Empty_List {
+    return Intl.message(
+      'Empty list.',
+      name: 'Empty_List',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete.`
+  String get Delete {
+    return Intl.message(
+      'Delete.',
+      name: 'Delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to delete this task?`
+  String get Delete_task {
+    return Intl.message(
+      'Do you want to delete this task?',
+      name: 'Delete_task',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed`
+  String get Completed {
+    return Intl.message(
+      'Completed',
+      name: 'Completed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

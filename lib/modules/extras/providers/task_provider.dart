@@ -35,4 +35,12 @@ class TaskFormProvider extends ChangeNotifier {
     notifyListeners();
     return box.delete(id);
   }
+
+  Future<void> alternarBoleano(String id, bool estadoactual) async {
+    final Box<Task> box = await Hive.openBox<Task>('Tareas');
+    final Task? latask = box.get(id);
+    latask!.completed = !estadoactual;
+    await box.put(latask.id, latask);
+
+  }
 }

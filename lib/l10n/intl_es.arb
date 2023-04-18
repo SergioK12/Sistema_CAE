@@ -6,5 +6,13 @@
     "DarkMode": "Modo oscuro",
     "Add": "Agregar",
     "English":"Inglés",
-    "Spanish": "Español"
+    "Spanish": "Español",
+    "Add_task": "Agregar tarea",
+    "Accept": "Aceptar",
+    "Cancel": "Cancelar",
+    "Empty_List": "Lista vacía.",
+    "Delete": "Borrar",
+    "Delete_task": "¿Quieres borrar esta tarea?",
+    "Completed": "Completar"
+
 }
