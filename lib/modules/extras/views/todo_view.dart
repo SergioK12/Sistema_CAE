@@ -161,19 +161,31 @@ class _TodoViewState extends State<TodoView> {
                               }
 
                               if (direction == DismissDirection.endToStart) {
-                                lis[index].completed = !lis[index].completed;
-                                setState(() {
-                                  
-                                });
+                                formprovider.alternarBoleano( lis[index].id , lis[index].completed);
+                                setState(() {});
                               }
                               return res;
                             },
                             child: ListTile(
-                              title: Text(lis[index].description.toString(),
-                                  style: mystyle.textTheme.titleSmall),
+                              title: 
+                              (lis[index].completed == false)?
+                              Text(lis[index].description.toString(),
+                                  style: mystyle.textTheme.titleSmall)
+                                  : 
+                                  Text(lis[index].description.toString(),
+                                  style: mystyle.textTheme.titleSmall!.copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationColor: const Color(0xff000000)
+                                  )),
                               trailing: Checkbox(
+                                
                                 value: lis[index].completed,
-                                onChanged: (value) => !value!,
+                                onChanged: (value) {
+                                formprovider.alternarBoleano( lis[index].id , lis[index].completed);
+                                setState(() {
+                                  
+                                });
+                                },
                               ),
                             ),
                           );
