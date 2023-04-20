@@ -19,7 +19,7 @@ class FormAddTask extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           TextFormField(
-            style: themeprovider.temaactual.textTheme.titleSmall
+            style: themeprovider.temaactual.textTheme.bodyMedium
             ,
             autofocus: true,
             validator: (value) {
