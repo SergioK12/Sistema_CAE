@@ -26,11 +26,12 @@ class _DrawerAppState extends State<DrawerApp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(S.current.English.toString(),
-                    style: mystyle.textTheme.titleSmall),
-                const SwitchLanguage(),
                 Text(S.current.Spanish.toString(),
                     style: mystyle.textTheme.titleSmall),
+                const SwitchLanguage(),
+                Text(S.current.English.toString(),
+                    style: mystyle.textTheme.titleSmall),
+                
               ],
             )
           ],
@@ -52,14 +53,13 @@ class SwitchLanguage extends StatefulWidget {
 class _SwitchLanguageState extends State<SwitchLanguage> {
   @override
   Widget build(BuildContext context) {
+    final langprovider = Provider.of<LanguageProvider>(context, listen: false);
     return Switch(
       value: Preferencias.getIsEnglish,
       onChanged: (value) {
         Preferencias.setIsEnglish = value;
-        final langprovider =
-            Provider.of<LanguageProvider>(context, listen: false);
         setState(() {
-          value ? langprovider.setSpanish() : langprovider.setEnglish();
+          value ? langprovider.setEnglish(): langprovider.setSpanish();
         });
       },
     );

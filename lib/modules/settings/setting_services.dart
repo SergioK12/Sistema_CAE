@@ -24,8 +24,8 @@ class Preferencias {
     return _prefs.getBool('isEnglish') ?? _isEnglish;
   }
 
-  static set setIsEnglish(bool isEnglish) {
-    _isEnglish = isEnglish;
-    _prefs.setBool('isEnglish', isEnglish);
+  static set setIsEnglish(bool isIngles) {
+    _isEnglish = isIngles;
+    _prefs.setBool('isEnglish', isIngles);
   }
 }
