@@ -1,4 +1,5 @@
 
+import 'package:cae/modules/calcules/views/IMC/indice_masa.dart';
 import 'package:cae/modules/extras/models/task_model.dart';
 import 'package:cae/modules/extras/providers/task_provider.dart';
 import 'package:cae/modules/settings/language_provider.dart';
@@ -50,6 +51,8 @@ class MyApp extends StatelessWidget {
           initialRoute: HomeView.routeName,
           routes: {
             HomeView.routeName: (_) => const HomeView(),
+            IMCView.routeName: (_) => const IMCView()
+
           },
           locale: Provider.of<LanguageProvider>(context).langActual,
           localizationsDelegates: const [

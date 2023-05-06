@@ -1,3 +1,4 @@
+import 'package:cae/modules/calcules/views/IMC/indice_masa.dart';
 import 'package:cae/modules/calcules/views/widgets/rectangleofcalculates.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class CalculosView extends StatelessWidget {
           text: "Agregar",
           ontap: () {
             debugPrint("HOLA");
+            Navigator.pushNamed(context, IMCView.routeName);
           },
         ),
         Padding(
