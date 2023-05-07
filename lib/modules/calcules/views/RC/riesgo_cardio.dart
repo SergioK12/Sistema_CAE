@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 class RiesgoCardiovascularView extends StatelessWidget {
+  static String routeName = 'RiesgoCardio';
+
   const RiesgoCardiovascularView({super.key});
 
   @override

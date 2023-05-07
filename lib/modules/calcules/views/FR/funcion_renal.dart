@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 class FuncionRenalView extends StatelessWidget {
+  static String routeName = 'FuncionRenal';
+
   const FuncionRenalView({super.key});
 
   @override

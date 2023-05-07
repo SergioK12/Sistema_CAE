@@ -1,5 +1,7 @@
 
+import 'package:cae/modules/calcules/views/FR/funcion_renal.dart';
 import 'package:cae/modules/calcules/views/IMC/indice_masa.dart';
+import 'package:cae/modules/calcules/views/RC/riesgo_cardio.dart';
 import 'package:cae/modules/extras/models/task_model.dart';
 import 'package:cae/modules/extras/providers/task_provider.dart';
 import 'package:cae/modules/settings/language_provider.dart';
@@ -51,7 +53,9 @@ class MyApp extends StatelessWidget {
           initialRoute: HomeView.routeName,
           routes: {
             HomeView.routeName: (_) => const HomeView(),
-            IMCView.routeName: (_) => const IMCView()
+            IMCView.routeName: (_) => const IMCView(),
+            RiesgoCardiovascularView.routeName: (_) => const RiesgoCardiovascularView(),
+            FuncionRenalView.routeName: (_) => const FuncionRenalView(),
 
           },
           locale: Provider.of<LanguageProvider>(context).langActual,
