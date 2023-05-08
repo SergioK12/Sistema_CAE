@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 class VacunasNiniosView extends StatelessWidget {
+  static String routeName = 'Vacunes';
+
   const VacunasNiniosView({super.key});
 
   @override
