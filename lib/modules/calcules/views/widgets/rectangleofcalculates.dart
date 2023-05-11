@@ -14,6 +14,8 @@ class ItemBox extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
+          height: MediaQuery.of(context).size.height * 0.08,
+          width: MediaQuery.of(context).size.width * 0.15,
           color: color,
           child: Column(
             children: [
