@@ -10,6 +10,33 @@ class IMCView extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Indice de masa corporal"),
       ),
+      body: Column(
+        children: [
+          Container(
+            padding: const  EdgeInsets.all(20),
+            color: Colors.yellow,
+            width: double.infinity,
+            child: const Text("Calcular", textAlign: TextAlign.center),
+          ),
+          const Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 20),
+            child:  TextField(
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20))
+                )
+              ),
+            ),
+          ),
+          const Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 20),
+            child:  TextField(),
+          ),
+          
+
+        ],
+
+      ),
     );
   }
 }
