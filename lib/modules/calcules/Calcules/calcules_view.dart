@@ -1,8 +1,8 @@
-import 'package:cae/modules/calcules/views/FR/funcion_renal.dart';
-import 'package:cae/modules/calcules/views/IMC/indice_masa.dart';
-import 'package:cae/modules/calcules/views/RC/riesgo_cardio.dart';
-import 'package:cae/modules/calcules/views/VN/vacunes_ninios.dart';
-import 'package:cae/modules/calcules/views/widgets/rectangleofcalculates.dart';
+import 'package:cae/modules/calcules/Calcules/FR/funcion_renal.dart';
+import 'package:cae/modules/calcules/Calcules/IMC/indice_masa.dart';
+import 'package:cae/modules/calcules/Calcules/RC/riesgo_cardio.dart';
+import 'package:cae/modules/calcules/Calcules/VN/vacunes_ninios.dart';
+import 'package:cae/modules/calcules/Calcules/widgets/rectangleofcalculates.dart';
 import 'package:flutter/material.dart';
 
 class CalculosView extends StatelessWidget {
