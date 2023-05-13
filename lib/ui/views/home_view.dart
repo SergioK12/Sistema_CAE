@@ -1,4 +1,4 @@
-import 'package:cae/modules/calcules/views/calcules_view.dart';
+import 'package:cae/modules/calcules/Calcules/calcules_view.dart';
 import 'package:cae/modules/extras/views/todo_view.dart';
 import 'package:cae/providers/main_provider.dart';
 import 'package:flutter/material.dart';
