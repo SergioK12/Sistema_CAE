@@ -1,5 +1,6 @@
 
 import 'package:cae/modules/calcules/Calcules/FR/funcion_renal.dart';
+import 'package:cae/modules/calcules/Calcules/IMC/imc_provider.dart';
 import 'package:cae/modules/calcules/Calcules/IMC/indice_masa.dart';
 import 'package:cae/modules/calcules/Calcules/RC/riesgo_cardio.dart';
 import 'package:cae/modules/calcules/Calcules/VN/vacunes_ninios.dart';
@@ -31,7 +32,7 @@ Future<void> main() async {
       ChangeNotifierProvider(
         create: (context) =>ThemeProvider(isDarkMode: Preferencias.getIsDarkMode),
       ),
-      
+      ChangeNotifierProvider(create: (context) => IMCProvider(),),
       ChangeNotifierProvider(
         create: (context) =>TaskFormProvider()),
       
