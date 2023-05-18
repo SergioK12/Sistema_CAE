@@ -22,9 +22,10 @@ class _IMCViewState extends State<IMCView> {
         children: [
           Container(
             padding: const EdgeInsets.all(20),
-            color: Colors.yellow,
+            color: (imcprovider.getstatus() == Estados.normal.name)? Colors.green : Colors.red,
             width: double.infinity,
-            child: Text(imcprovider.getpeso()+ imcprovider.getAltura(),
+            child: Text(
+                '${imcprovider.calcularimc()}\n${imcprovider.getstatus()}',
                 textAlign: TextAlign.center),
           ),
           Padding(
@@ -38,10 +39,12 @@ class _IMCViewState extends State<IMCView> {
                 Expanded(
                   flex: 2,
                   child: TextField(
+                    keyboardType: TextInputType.number,
                     style: const TextStyle(color: Colors.black),
                     onChanged: (value) {
                       setState(() {
-                      Provider.of<IMCProvider>(context, listen: false).peso = value;
+                        Provider.of<IMCProvider>(context, listen: false).peso =
+                            double.tryParse(value) ?? 0.0;
                       });
                     },
                     decoration: const InputDecoration(
@@ -84,16 +87,15 @@ class _IMCViewState extends State<IMCView> {
                   flex: 2,
                   child: TextField(
                     keyboardType: TextInputType.number,
-                    
                     style: const TextStyle(color: Colors.black),
                     decoration: const InputDecoration(
-                      
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                     ),
                     onChanged: (value) {
                       setState(() {
-                      Provider.of<IMCProvider>(context, listen: false).altura = value;
+                        Provider.of<IMCProvider>(context, listen: false)
+                            .altura = double.tryParse(value) ?? 0.0;
                       });
                     },
                   ),
@@ -124,4 +126,6 @@ class _IMCViewState extends State<IMCView> {
       ),
     );
   }
+
+  
 }
