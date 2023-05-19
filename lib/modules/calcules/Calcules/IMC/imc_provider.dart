@@ -7,13 +7,10 @@ class IMCProvider extends ChangeNotifier {
   var altura = 0.0;
   var estadoPx = Estados.normal.name;
   var res = 0.0;
+  Color elcolor = Colors.grey;
 
-  String getstatus() {
-    return estadoPx;
-  }
-
-  String getpeso() {
-    return peso.toString();
+  double getpeso() {
+    return peso;
   }
 
   void setpeso(double pesorecibido) {
@@ -21,51 +18,84 @@ class IMCProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  double getAltura() {
+  double getaltura() {
     return altura;
   }
 
-  void setAltura(double alturarecibida) {
-    peso = alturarecibida;
+  void setaltura(double alturarecibida) {
+    altura = alturarecibida;
     notifyListeners();
   }
 
-  String calcularimc() {
+  void setAltura(double alturarecibida) {
+    altura = alturarecibida;
+    notifyListeners();
+  }
+
+  void calcularimc() {
     if (altura == 0 && peso == 0) {
-      return "Ingrese los datos";
+      setstatus("Ingrese los datos");
     }
 
     if (altura == 0) {
-      return 'Ingresa la altura';
+      setstatus('Ingresa la altura');
     }
 
     if (peso == 0) {
-      return 'Ingresa el peso';
+      setstatus('Ingresa el peso');
     }
     final double result = peso / ((pow(altura, 2) * 0.0001));
-    res = result;
-    cambiarxd(res);
-    return result.toString();
+    setres(result);
+    if (result < 16 && result >= 1) {
+      setcolor(Colors.yellow);
+      setstatus(Estados.infrapeso1.name);
+    } else if (result >= 16.00 && result <= 16.99) {
+      setcolor(Colors.yellow);
+      setstatus(Estados.infrapeso2.name);
+    } else if (result >= 17.00 && result <= 18.49) {
+      setcolor(Colors.yellow);
+      setstatus(Estados.infrapeso3.name);
+    } else if (result >= 18.50 && result <= 24.99) {
+      setcolor(Colors.green);
+      setstatus(Estados.normal.name);
+    } else if (result >= 25.00 && result <= 29.99) {
+      setcolor(Colors.red);
+      setstatus(Estados.sobrepeso.name);
+    } else if (result >= 30.00 && result <= 34.99) {
+      setcolor(Colors.red);
+      setstatus(Estados.obeso1.name);
+    } else if (result >= 35.00 && result <= 40.99) {
+      setcolor(Colors.red);
+      setstatus(Estados.infrapeso2.name);
+    } else if (result >= 40.0) {
+      setcolor(Colors.red);
+      setstatus(Estados.obeso3.name);
+    }
   }
 
-  void cambiarxd(double res) {
-    if (res < 16 && res >= 1) {
-      estadoPx = Estados.infrapeso1.name;
-    } else if (res >= 16.00 && res <= 16.99) {
-      estadoPx = Estados.infrapeso2.name;
-    } else if (res >= 17.00 && res <= 18.49) {
-      estadoPx = Estados.infrapeso3.name;
-    } else if (res >= 18.50 && res <= 24.99) {
-      estadoPx = Estados.normal.name;
-    } else if (res >= 25.00 && res <= 29.99) {
-      estadoPx = Estados.sobrepeso.name;
-    } else if (res >= 30.00 && res <= 34.99) {
-      estadoPx = Estados.obeso1.name;
-    } else if (res >= 35.00 && res <= 40.99) {
-      estadoPx = Estados.obeso2.name;
-    } else if (res >= 40.0) {
-      estadoPx = Estados.obeso3.name;
-    }
+  void setstatus(String x) {
+    estadoPx = x;
+  }
+
+  String getstatus() {
+    return estadoPx;
+  }
+
+  void setres(double resultx) {
+    res = resultx;
+    notifyListeners();
+  }
+
+  String getrest() {
+    return res.toString();
+  }
+
+  Color getcolor() {
+    return elcolor;
+  }
+
+  void setcolor(Color colx) {
+    elcolor = colx;
   }
 }
 

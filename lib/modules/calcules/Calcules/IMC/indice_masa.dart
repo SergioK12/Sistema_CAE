@@ -13,7 +13,7 @@ class IMCView extends StatefulWidget {
 class _IMCViewState extends State<IMCView> {
   @override
   Widget build(BuildContext context) {
-    final imcprovider = Provider.of<IMCProvider>(context);
+    final imcprovider = Provider.of<IMCProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Indice de masa corporal"),
@@ -22,10 +22,10 @@ class _IMCViewState extends State<IMCView> {
         children: [
           Container(
             padding: const EdgeInsets.all(20),
-            color: (imcprovider.getstatus() == Estados.normal.name)? Colors.green : Colors.red,
+            color: Provider.of<IMCProvider>(context, listen: true).elcolor,
             width: double.infinity,
             child: Text(
-                '${imcprovider.calcularimc()}\n${imcprovider.getstatus()}',
+                '${imcprovider.getstatus()}\n ${imcprovider.getrest()}',
                 textAlign: TextAlign.center),
           ),
           Padding(
@@ -42,9 +42,9 @@ class _IMCViewState extends State<IMCView> {
                     keyboardType: TextInputType.number,
                     style: const TextStyle(color: Colors.black),
                     onChanged: (value) {
+                      imcprovider.setpeso(double.tryParse(value) ?? 0.0);
                       setState(() {
-                        Provider.of<IMCProvider>(context, listen: false).peso =
-                            double.tryParse(value) ?? 0.0;
+                        imcprovider.calcularimc();
                       });
                     },
                     decoration: const InputDecoration(
@@ -92,10 +92,10 @@ class _IMCViewState extends State<IMCView> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                     ),
-                    onChanged: (value) {
+                    onChanged: (valuex) {
+                      imcprovider.setAltura(double.tryParse(valuex) ?? 0.0);
                       setState(() {
-                        Provider.of<IMCProvider>(context, listen: false)
-                            .altura = double.tryParse(value) ?? 0.0;
+                        imcprovider.calcularimc();
                       });
                     },
                   ),
@@ -126,6 +126,4 @@ class _IMCViewState extends State<IMCView> {
       ),
     );
   }
-
-  
 }
