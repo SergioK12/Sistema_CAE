@@ -8,7 +8,8 @@ class IMCProvider extends ChangeNotifier {
   var estadoPx = Estados.normal.name;
   var res = 0.0;
   Color elcolor = Colors.grey;
-
+  var isInCM = false;
+  var isInKG = false;
   double getpeso() {
     return peso;
   }
