@@ -1,5 +1,6 @@
 import 'package:cae/modules/calcules/Calcules/IMC/imc_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class IMCView extends StatefulWidget {
@@ -11,6 +12,8 @@ class IMCView extends StatefulWidget {
 }
 
 class _IMCViewState extends State<IMCView> {
+  final RegExp _regex = RegExp(r'^\d{1,3}(\.\d{0,2})?$');
+  final TextEditingController _textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final imcprovider = Provider.of<IMCProvider>(context, listen: false);
@@ -24,8 +27,7 @@ class _IMCViewState extends State<IMCView> {
             padding: const EdgeInsets.all(20),
             color: Provider.of<IMCProvider>(context, listen: true).elcolor,
             width: double.infinity,
-            child: Text(
-                '${imcprovider.getstatus()}\n ${imcprovider.getrest()}',
+            child: Text('${imcprovider.getstatus()}\n ${imcprovider.getrest()}',
                 textAlign: TextAlign.center),
           ),
           Padding(
@@ -60,9 +62,9 @@ class _IMCViewState extends State<IMCView> {
                       child: Text("Libras"),
                     ),
                     Switch(
-                      value: true,
+                      value: imcprovider.getisInKG(),
                       onChanged: (value) {
-                        debugPrint(value.toString());
+                        imcprovider.setisinKG(value);
                       },
                     ),
                     const Padding(
@@ -86,30 +88,42 @@ class _IMCViewState extends State<IMCView> {
                 Expanded(
                   flex: 2,
                   child: TextField(
-                    keyboardType: TextInputType.number,
+                    controller: _textEditingController,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
                     style: const TextStyle(color: Colors.black),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(_regex),
+                    ],
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                     ),
                     onChanged: (valuex) {
+                      final maches = _regex.allMatches(valuex);
+                      if(maches.isEmpty){
+                        _textEditingController.value = _textEditingController.value.copyWith(text: '',
+                        selection: const TextSelection.collapsed(offset: 0),);
+                      }
                       imcprovider.setAltura(double.tryParse(valuex) ?? 0.0);
                       setState(() {
                         imcprovider.calcularimc();
                       });
                     },
                   ),
+                  
                 ),
                 Row(
                   children: [
+                    
                     const Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text("Metros"),
                     ),
                     Switch(
-                      value: true,
+                      value: imcprovider.getisInCm(),
                       onChanged: (value) {
-                        debugPrint(value.toString());
+                        imcprovider.setisinCm(value);
                       },
                     ),
                     const Padding(
