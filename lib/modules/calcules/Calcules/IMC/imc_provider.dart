@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class IMCProvider extends ChangeNotifier {
@@ -8,8 +7,26 @@ class IMCProvider extends ChangeNotifier {
   var estadoPx = Estados.normal.name;
   var res = 0.0;
   Color elcolor = Colors.grey;
-  var isInCM = false;
-  var isInKG = false;
+  var isInCM = true;
+  var isInKG = true;
+  void setisinCm(bool statusofIsCM) {
+    isInCM = statusofIsCM;
+    notifyListeners();
+  }
+
+  bool getisInCm() {
+    return isInCM;
+  }
+
+  void setisinKG(bool statusofIsKG) {
+    isInKG = statusofIsKG;
+    notifyListeners();
+  }
+
+  bool getisInKG() {
+    return isInKG;
+  }
+
   double getpeso() {
     return peso;
   }
