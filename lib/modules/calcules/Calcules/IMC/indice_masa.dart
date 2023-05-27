@@ -39,6 +39,10 @@ class _IMCViewState extends State<IMCView> {
                 Expanded(
                   flex: 2,
                   child: TextField(
+                    inputFormatters: const [
+                     
+
+                    ],
                     keyboardType: TextInputType.number,
                     style: const TextStyle(color: Colors.black),
                     onChanged: (value) {
