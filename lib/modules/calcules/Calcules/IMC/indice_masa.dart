@@ -1,7 +1,8 @@
 import 'package:cae/modules/calcules/Calcules/IMC/imc_provider.dart';
-import 'package:cae/modules/calcules/Calcules/IMC/prueba.dart';
+import 'package:cae/modules/calcules/Calcules/IMC/input_formatters.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 class IMCView extends StatefulWidget {
   static String routeName = 'IndiceMasaCorporal';
   const IMCView({super.key});
@@ -17,6 +18,14 @@ class _IMCViewState extends State<IMCView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Indice de masa corporal"),
+        leading: IconButton(
+            onPressed: () {
+              imcprovider.setpeso("0");
+              setState(() {
+                
+              });
+            },
+            icon: const Icon(Icons.delete)),
       ),
       body: Column(
         children: [
@@ -27,7 +36,6 @@ class _IMCViewState extends State<IMCView> {
             child: Text('${imcprovider.getstatus()}\n ${imcprovider.getrest()}',
                 textAlign: TextAlign.center),
           ),
-         
           Padding(
             padding: const EdgeInsets.only(top: 20, left: 20),
             child: Row(
@@ -39,14 +47,10 @@ class _IMCViewState extends State<IMCView> {
                 Expanded(
                   flex: 2,
                   child: TextField(
-                    inputFormatters: const [
-                     
-
-                    ],
                     keyboardType: TextInputType.number,
                     style: const TextStyle(color: Colors.black),
                     onChanged: (value) {
-                      imcprovider.setpeso(double.tryParse(value) ?? 0.0);
+                      imcprovider.setpeso(value);
                       setState(() {
                         imcprovider.calcularimc();
                       });
@@ -60,9 +64,10 @@ class _IMCViewState extends State<IMCView> {
                 Row(
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: Text("Libras"),
-                    ),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                        ),
+                        child: Text("KG")),
                     Switch(
                       value: imcprovider.getisInKG(),
                       onChanged: (value) {
@@ -70,10 +75,9 @@ class _IMCViewState extends State<IMCView> {
                       },
                     ),
                     const Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20,
-                        ),
-                        child: Text("KG")),
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text("Libras"),
+                    ),
                   ],
                 ),
               ],
@@ -92,27 +96,26 @@ class _IMCViewState extends State<IMCView> {
                   child: TextField(
                     style: const TextStyle(color: Colors.black),
                     inputFormatters: [
-                      MyInputFormatter(),
-                      
+                      imcprovider.isInCM
+                          ? DigitsonlyAndlimit()
+                          : DecimalFormatter()
                     ],
-                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                     ),
                     onChanged: (valuex) {
-                     
                       imcprovider.setAltura(double.tryParse(valuex) ?? 0.0);
                       setState(() {
                         imcprovider.calcularimc();
                       });
                     },
                   ),
-                  
                 ),
                 Row(
                   children: [
-                    
                     const Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text("Metros"),
@@ -120,6 +123,7 @@ class _IMCViewState extends State<IMCView> {
                     Switch(
                       value: imcprovider.getisInCm(),
                       onChanged: (value) {
+                        setState(() {});
                         imcprovider.setisinCm(value);
                       },
                     ),

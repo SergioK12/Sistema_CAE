@@ -31,8 +31,8 @@ class IMCProvider extends ChangeNotifier {
     return peso;
   }
 
-  void setpeso(double pesorecibido) {
-    peso = pesorecibido;
+  void setpeso(String pesorecibido) {
+    peso = double.tryParse(pesorecibido) ?? 0.0;
     notifyListeners();
   }
 
@@ -62,6 +62,15 @@ class IMCProvider extends ChangeNotifier {
     if (peso == 0) {
       setstatus('Ingresa el peso');
     }
+    if (altura % 2 != 0) {
+      // print(altura % 2);
+      altura = (altura * 100);
+    }
+
+    if (isInKG == false) {
+      peso = peso * 0.453592;
+    }
+
     final double result = peso / ((pow(altura, 2) * 0.0001));
     setres(result);
     if (result < 16 && result >= 1) {
