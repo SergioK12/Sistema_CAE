@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-class MyInputFormatter extends TextInputFormatter {
+class DecimalFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
@@ -20,6 +20,32 @@ class MyInputFormatter extends TextInputFormatter {
       data = '$data.';
       buffer.write(data);
     } else if (data.length <= 4) {
+      buffer.write(data);
+    } else {
+      buffer.write(oldValue.text);
+    }
+
+    return TextEditingValue(
+        text: buffer.toString(),
+        selection: TextSelection.collapsed(offset: buffer.toString().length));
+  }
+}
+
+class DigitsonlyAndlimit extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.selection.baseOffset == 0) {
+      return newValue;
+    }
+
+    String data = newValue.text;
+    StringBuffer buffer = StringBuffer();
+
+    if (data.length <= 3) {
+      if (data.contains('.')) {
+        data = data.replaceAll('.', '');
+      }
       buffer.write(data);
     } else {
       buffer.write(oldValue.text);

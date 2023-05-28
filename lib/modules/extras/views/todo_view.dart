@@ -37,7 +37,7 @@ class _TodoViewState extends State<TodoView> {
                       builder: (context) {
                         return AlertDialog(
                           title: Text(
-                            S.current.Add_task,
+                           S.of(context).Add,
                             style: mystyle.textTheme.bodyMedium,
                           ),
                           content: FormAddTask(keyform: formprovider.formkey),
