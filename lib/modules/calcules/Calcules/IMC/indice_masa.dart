@@ -20,10 +20,6 @@ class _IMCViewState extends State<IMCView> {
         title: const Text("Indice de masa corporal"),
         leading: IconButton(
             onPressed: () {
-              imcprovider.setpeso("0");
-              setState(() {
-                
-              });
             },
             icon: const Icon(Icons.delete)),
       ),
