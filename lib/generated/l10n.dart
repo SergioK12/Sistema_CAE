@@ -199,6 +199,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Body mass index`
+  String get Body_Mass_Index {
+    return Intl.message(
+      'Body mass index',
+      name: 'Body_Mass_Index',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

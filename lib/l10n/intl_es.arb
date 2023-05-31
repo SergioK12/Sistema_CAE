@@ -13,6 +13,7 @@
     "Empty_List": "Lista vacía.",
     "Delete": "Borrar",
     "Delete_task": "¿Quieres borrar esta tarea?",
-    "Completed": "Completar"
+    "Completed": "Completar",
+    "Body_Mass_Index": "Indice de masa corporal"
 
 }

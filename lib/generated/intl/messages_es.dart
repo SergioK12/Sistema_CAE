@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Add": MessageLookupByLibrary.simpleMessage("Agregar"),
         "Add_task": MessageLookupByLibrary.simpleMessage("Agregar tarea"),
         "Alarms": MessageLookupByLibrary.simpleMessage("Alarmas"),
+        "Body_Mass_Index":
+            MessageLookupByLibrary.simpleMessage("Indice de masa corporal"),
         "Calculations": MessageLookupByLibrary.simpleMessage("Calculos"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "Completed": MessageLookupByLibrary.simpleMessage("Completar"),
