@@ -1,3 +1,4 @@
+import 'package:cae/generated/l10n.dart';
 import 'package:cae/modules/calcules/Calcules/IMC/imc_provider.dart';
 import 'package:cae/modules/calcules/Calcules/IMC/input_formatters.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +18,7 @@ class _IMCViewState extends State<IMCView> {
     final imcprovider = Provider.of<IMCProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Indice de masa corporal"),
-        leading: IconButton(
-            onPressed: () {
-            },
-            icon: const Icon(Icons.delete)),
+        title:  Text(S.current.Body_Mass_Index),
       ),
       body: Column(
         children: [
