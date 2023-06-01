@@ -1,2 +1,13 @@
 # Sistema_cae
-Es un sistema de calculos "Medicos", que se ocupan frecuentemente
+➡️  Alarms
+➡️  To-do list
+➡️  Calcules
+-------------
+⬇   Uso de  ⬇
+
+✅Gestión de estado con Provider 
+✅Internacionalización
+✅paquetes de pub dev
+✅HiveDb
+✅Preferencias de usuario
+✅Alarmas
